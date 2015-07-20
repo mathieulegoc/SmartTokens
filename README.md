@@ -1,0 +1,2 @@
+# SmartTokens
+SmartTokens are small-sized tangible tokens that can sense multiple types of motion, multiple types of touch/grip, and send input events wirelessly as state-machine transitions. By providing an open platform for embedding basic sensing capabilities within small form-factors, SmartTokens extend the design space of tangible user interfaces. Here is all the material required to build and use SmartTokens, from PCB production files to code.
