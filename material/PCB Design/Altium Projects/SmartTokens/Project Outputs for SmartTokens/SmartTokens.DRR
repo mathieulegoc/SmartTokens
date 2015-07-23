@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: SmartTokens.PcbDoc   23/07/2015  15:24:50
+---------------------------------------------------------------------------
+
+Layer Pair : Component Side to Solder Side
+ASCII RoundHoles File : SmartTokens.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.3mm (11.811mil)        Round          45               124.57 mm (4.90 Inch)
+T2        0.5mm (19.685mil)        Round          14               32.03 mm (1.26 Inch)
+---------------------------------------------------------------------------
+Totals                                            59               156.60 mm (6.17 Inch)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

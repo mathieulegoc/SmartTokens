@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [USB Dongle.PrjPcb]
+   Generated File[USB Dongle PCB.TXT]
+   Generated File[USB Dongle PCB.LDP]
+   Generated File[USB Dongle PCB.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 15:28:17 On 23/07/2015

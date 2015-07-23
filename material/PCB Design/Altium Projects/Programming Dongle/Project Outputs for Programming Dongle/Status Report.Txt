@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Programming Dongle.PrjPcb]
+   Generated File[Programming Dongle PCB.TXT]
+   Generated File[Programming Dongle PCB.LDP]
+   Generated File[Programming Dongle PCB.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 15:20:31 On 23/07/2015
