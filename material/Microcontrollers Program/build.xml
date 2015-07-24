@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ANT Build Script for JN-AN-1174-JN516x-802-15-4-Application-Template" default="zip-up" basedir=".">
+
+<!--*********************** Editable Tag Section ************************-->
+<!--***********************======================************************-->
+
+    <!-- Tags to Build from -->
+	<property name="App.name" value="JN-AN-1174-JN516x-802-15-4-Application-Template"/>
+	<!-- This is this next version to released onto the web -->
+    <property name="App.version" value="1v0"/>
+	<!-- For tagging purposes only -->
+	<property name="App.rc" value="RC1"/>
+
+    <property name="App.svnbase" value="https://www.collabnet.nxp.com/svn/lprf_sware/"/>
+    <property name="App.trunk" value="${App.svnbase}/Application_Notes/${App.name}/Trunk"/>
+    <property name="App.tag" value="JN-AN-1174-${App.version}_${App.rc}"/>
+    <property name="BuildZipDir" value=".\build_zip\${App.name}_ZIP_DIR"/>
+    <property name="BuildDir" value=".\build_zip\${App.name}"/>
+
+    <!-- SVN Variables (may need to change depending on the location of your svnant.jar's-->
+    <property name="SVNAnt" value="C:\Program Files\svnant\svnant-1.3.1\lib"/>
+    <!-- These can be ignored for the time being -->
+    <property name="svnant.repository.user" value="*"/>
+    <property name="svnant.repository.passwd" value="*"/>
+    
+    <!-- Use environment variables for username -->
+    <property environment="env"/>
+<!--*********************************************************************-->
+<!--*********************************************************************-->
+    <!-- Setup paths,typedefs and taskdefs -->
+
+    <!--This taskdef init the ANTSVN tasks used in this script-->
+    <taskdef name="svn" classname="org.tigris.subversion.svnant.SvnTask">
+            <classpath>
+                    <fileset dir="${SVNAnt}">
+                            <include name="**/svn*.jar"/>
+                    </fileset>
+            </classpath>
+    </taskdef>
+
+
+    <!-- Initialisation -->
+    <target name="init">
+        <echo>Initialising Build Process</echo>
+
+<!--
+        <input
+           message="Please enter subversion username for ${username}:"
+           addproperty="svnusername">
+           <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+        </input>
+-->
+<!-- use env variable inside NXN -->
+        <property name="svnusername" value="${env.USERNAME}"/>
+
+        <input
+           message="Please enter subversion password for ${svnusername}:"
+           addproperty="svnpassword">
+           <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+        </input>
+     </target>
+    <target name="zip-up" depends="init">
+        <echo>Build and Zip</echo>
+
+        <svn username="${svnusername}" password="${svnpassword}" javahl="${javahl}" >
+
+    	<!--<svn javahl="false" username="${svnant.repository.user}" password="${svnant.repository.passwd}">-->
+        <export srcUrl="${App.trunk}" destPath="${BuildDir}" />
+        </svn>
+
+        <move todir="${BuildZipDir}\${App.name}\Common">
+          <fileset dir="${BuildDir}\Common"/>
+        </move>
+        <move todir="${BuildZipDir}\${App.name}\Doc">
+          <fileset dir="${BuildDir}\Doc">
+            <exclude name="*.doc"/>
+          </fileset>
+        </move>
+        <move todir="${BuildZipDir}\${App.name}\AN1174_154_Coord">
+          <fileset dir="${BuildDir}\AN1174_154_Coord"/>
+        </move>
+        <move todir="${BuildZipDir}\${App.name}\AN1174_154_EndD">
+          <fileset dir="${BuildDir}\AN1174_154_EndD"/>
+        </move>
+    	<move file="${BuildDir}\Makefile" todir="${BuildZipDir}\${App.name}"/>
+    	<move file="${BuildDir}\.project" todir="${BuildZipDir}\${App.name}"/>
+    	<move file="${BuildDir}\.cproject" todir="${BuildZipDir}\${App.name}"/>
+        <!-- ZIP file up -->
+        <zip destfile="./${App.name}-${App.version}.zip"
+             basedir="${BuildZipDir}"
+        />
+    </target>
+
+    <target name="commit" depends="init">
+        <echo>Commit Step 1 - Tag Trunk</echo>
+        <svn username="${svnusername}" password="${svnpassword}" javahl="${javahl}" >
+            <copy srcUrl="${App.trunk}"
+                destUrl="${App.svnbase}/Application_Notes/${App.name}/Tags/${App.tag}"
+                message="version  commited via ant script"
+            />
+        </svn>
+        <echo>Commit Step 2</echo>
+
+ <!-- Create a Tag for release Zip -->
+        <svn username="${svnusername}" password="${svnpassword}" javahl="${javahl}" >
+           <mkdir url="${App.svnbase}/Application_Notes/${App.name}/Releases/Tags/${App.tag}"
+                message="${App.tag} release dir created via ant script"
+            />
+            <checkout url="${App.svnbase}/Application_Notes/${App.name}/Releases/Tags/${App.tag}"
+                destPath="./Release-Zip"
+            />
+        </svn>
+
+        <!-- copy release files to release directory for adding to Repository -->
+        <copy file="./${App.name}-${App.version}.zip" todir="./Release-Zip"/>
+        <!-- commit to svn Release/Tags folder -->
+        <svn username="${svnusername}" password="${svnpassword}" javahl="${javahl}" >
+            <add file=".\Release-Zip\${App.name}-${App.version}.zip" force="true"/>
+           <commit dir=".\Release-Zip\"
+                recurse="true"
+                message="${App.tag}_ release zip added via ant script"
+            />
+        </svn>
+    </target>
+
+	<target name="clean-up">
+        <!-- Clean up -->
+		<delete dir=".\Release-Zip"/>
+		<delete dir=".\build_zip"/>
+
+        <echo>Finished Build Process</echo>
+    </target>
+
+</project>
