@@ -290,6 +290,7 @@ code {
 }
 
 pre {
+
   background: none;
   line-height: 18px;
   overflow: auto;
@@ -890,6 +891,26 @@ pre .chunk {
 #documentation-intro a:hover {
   opacity: 0.75;
   text-decoration: underline;
+}
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table td, th {
+    text-align: left;
+    padding: 0 0.2em;
+    margin: 20px
+}
+
+table tr:nth-child(odd) {
+    color: #000;
+    background: rgba(255, 255, 255, .0);
+}
+table tr:nth-child(even) {
+    color: #000;
+    background: #EEE;
 }
 
 /* Syntax highlighter */
