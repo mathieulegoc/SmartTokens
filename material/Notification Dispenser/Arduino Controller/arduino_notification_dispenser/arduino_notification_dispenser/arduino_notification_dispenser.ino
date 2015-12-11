@@ -7,32 +7,33 @@ const int ledPin =  13;
 
 Servo servo[3];
 int buttonState = 0;
-byte servoAngle = 80;
+byte servoAngle[] = {65, 64, 68}; //pour #2 70; avec delta=10 et delay=90
 boolean running = false;
-
 
 void setup()
 {
   Serial.begin(9600);
-  //Initialize all the dispensers'servos
-  //Here using pin 9, 10, 11
-  for (int i = 0; i < NB_CATEGORIES; i++)
-  {
+  for (int i = 0; i < NB_CATEGORIES; i++) {
     servo[i].attach(9 + i);
-    servo[i].write(servoAngle);
+    servo[i].write(servoAngle[i]);
   }
-
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT);
   digitalWrite(ledPin, LOW);
 }
 
-//routine to drop a token, moves a arm wait a bit and move it back
-void dropToken(byte id)
-{
-  servo[id].write(servoAngle - 20);
-  delay(108);
-  servo[id].write(servoAngle);
+void dropToken(byte id) {
+  servo[id].write(servoAngle[id] - 8);
+  delay(60); //delay(80);
+  //  if(id==2){
+  //        servo[id].write(servoAngle[id]-8);
+  //   delay(60); //delay(80);
+  //  }
+  //  else{
+  //    servo[id].write(servoAngle[id]-8);
+  //    delay(60);
+  //  }
+  servo[id].write(servoAngle[id]);
   delay(250);
 }
 
@@ -40,7 +41,6 @@ void loop()
 {
   byte id = 0;
   if (Serial.available()) {
-    //incoming byte indicate which dispenser has to drop a token
     id = Serial.read() - 1;
     if (id < NB_CATEGORIES)
       dropToken(id);

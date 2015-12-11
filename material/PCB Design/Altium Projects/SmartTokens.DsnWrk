@@ -1,0 +1,8 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=Programming Dongle\Programming Dongle.PrjPcb
+[Project2]
+ProjectPath=SmartTokens\SmartTokens.PrjPcb
+[Project3]
+ProjectPath=USB Dongle\USB Dongle.PrjPcb
