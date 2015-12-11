@@ -40,7 +40,7 @@
    <br/>
   Extended Material: 
   <a href="#figures">Figures</a> &middot;
-   <a href="*** ADD THE URL OF THE PAPER HERE ***" target="_blank" >PDF of the paper</a> &middot; 
+   <a href="https://hal.inria.fr/hal-01211270/document" >PDF of the paper</a> &middot; 
    <a class="popup-with-zoom-anim" href="#small-dialog-bibtex">Bibtex</a> &middot; 
    <a class="popup-with-zoom-anim" href="#small-dialog-slides"><b>Slides</b></a> &middot; 
 
@@ -52,11 +52,22 @@
       <div id="small-dialog-bibtex" class="zoom-anim-dialog mfp-hide">
         <h1>Bibtex</h1>
         <p>
-@article {
-
-*** ADD THE BIBTEX HERE *** 
-
-}
+        @inproceedings{
+          legoc:hal-01211270,
+          TITLE = {{SmartTokens: Embedding Motion and Grip Sensing in Small Tangible Objects}},
+          AUTHOR = {Le Goc, Mathieu and Dragicevic, Pierre and Huron, Samuel and Boy, Jeremy and Fekete, Jean-Daniel},
+          URL = {https://hal.inria.fr/hal-01211270},
+          BOOKTITLE = {{User Interface Software and Technology Symposium}},
+          ADDRESS = {Charlotte, NC, United States},
+          ORGANIZATION = {{ACM}},
+          YEAR = {2015},
+          MONTH = Nov,
+          DOI = {10.1145/2807442.2807488},
+          KEYWORDS = {Tangible user interfaces (TUIs) ; Tangible Tokens ; Sensor Network User Interfaces (SNUIs)},
+          PDF = {https://hal.inria.fr/hal-01211270/file/paper3771.pdf},
+          HAL_ID = {hal-01211270},
+          HAL_VERSION = {v1},
+        }
         </p>
       </div>
   
@@ -196,21 +207,25 @@ Access to the
       <th>Category</th>
       <th>Issue</th>
       <th>Reason</th>
+      <th>Fixed?</th>
     </tr> 
     <tr>
       <td>Hardware</td>
       <td>Wireless communication range limited</td>
       <td>The antenna chip chosen and the design of the antenna area limit the range to a couple of meters.</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td>Hardware</td>
       <td>Blind spots in the touch sensing</td>
       <td>The size of the touch electrodes is too small and does not cover a sufficient area. These will be expanded using a mesh pattern.</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td>  </td>
       <td>More to come...</td>
       <td>  </td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -221,102 +236,102 @@ Access to the
 <h2 id="Documentation">Documentation</h2>
 <h4> Coming... </h4>
 
-<h3 id="Hardware">Hardware</h3>
+<h2 id="Design">Design</h2>
 
+<h3 id="Hardware">Hardware </h3>
+
+  <a href ="site-assets/images/object_design_large.jpg" target="_blank">
+            <image src="site-assets/images/object_design.png" width="50%" align="center"/>
+ </a>
+ <p>
+SmartTokens are simple and cost-effective, but smart enough to be used as handles for digital information. SmartTokens allow to make generic, scalable and affordable user interfaces. They embed custom electronics, including touch and motion sensors as well as wireless communication functionalities.<br>
+</p>
 
 <div class="grid-c">
-
   <div class="example gc3">
-    <h3>Hardware Design</h3> 
-    <p>To download this picture in high quality click on it.  
-    <a href ="site-assets/images/object_design_nophoto.pdf" target="_blank">
-    <image src="site-assets/images/object_design_nophoto.png" width="100%">
-    </image></a>
+    <h3>Grip Sensing</h3> 
+    <p>
+      <a href ="site-assets/images/smarttokens_touch.gif" target="_blank">
+        <image src="site-assets/images/smarttokens_touch.gif" width="100%">
+        </image>
+      </a>
+      A capacitive touch sensor is embedded in each SmartToken. It monitors six electrodes distributed on the inner faces of the SmartToken’s shell (red areas). To provide the best touch sensitivity, the size of the touch electrodes has to be as large as possible.<br>
     </p>
   </div>
 
   <div class="example gc3">
-    <h3>How to build it </h3> 
-    <p>instruction to build
-       <br/>* Download the blueprint 
-       <br/>* What to buy
-       <br/>* Step by step assembly
+    <h3>Motion Sensing</h3> 
+    <p>
+       <a href ="site-assets/images/smarttokens_motion.gif" target="_blank">
+          <image src="site-assets/images/smarttokens_motion.gif" width="100%">
+          </image>
+        </a>
+        Motion is monitored with a six axes inertial measurement unit. Data is delivered as three linear accelerations. SmartTokens can distinguish between immobility, motion and free fall by monitoring changes in acceleration and touch events.<br>
     </p>
   </div>
 
-
+  <div class="example gc3">
+    <h3>Communication</h3> 
+    <p>
+      <a href ="site-assets/images/smarttokens_communication.gif" target="_blank">
+        <image src="site-assets/images/smarttokens_communication.gif" width="100%">
+        </image>
+      </a>
+      SmartTokens are joining a network to communicate information. This not only allows wireless communication, but also flexibility in the system, as SmartTokens can jump in and out the network seamlessly. Each is given an ID which allows the system to keep track of the current tokens in the network. Information attached to SmartTokens then remains persistent as they come back in the network. The USB dongle receives state-change messages from all SmartTokens.<br>
+    </p>
+  </div>
 </div>
 
-
-<h3 id="Software">Software</h3>
-
-
+<h3 id="InputModel">The SmartToken Input Model</h3>
 <div class="grid-c">
-
   <div class="example gc3">
-    <h3>List of Methods</h3> 
-
-  *** ADD DOCUMENTATION HERE *** 
-
-    </p>
-  </div>
-
-  <div class="example gc3">
-    <h3>List of Examples</h3> 
-
-
-  *** ADD EXEMPLE HERE *** 
-
-
-  </div>
-
-
-</div>
-
-
-<h2 id="extended">Extended Materials</h2>
-
-<h3 id="figures">Figures Sources:</h3>
-
-<div class="grid-c">
-
-  <div class="example gc3">
-    <h3>SmartToken Design</h3> 
-    <p>To download this figure in PDF version click on it.
-      <a href ="site-assets/download/object_design.pdf " target="_blank">
-    <image src="site-assets/images/object_design.png" width="100%">
-    </image></a>
-    </p>
-  </div>
-
-  <div class="example gc3">
-    <h3>Hardware Architecture</h3> 
-    <p>To download this figure in PDF version click on it.
-      <a href ="site-assets/download/hardware_architecture.pdf" target="_blank">
-    <image src="site-assets/images/hardware_architecture.png" width="100%">
-    </image></a>
-    </p>
-  </div>
-
-  <div class="example gc3">
-    <h3>The SmartToken Input Model</h3> 
     <p>To download this figure in PDF version click on it.
       <a href ="site-assets/download/state_machine.pdf" target="_blank">
     <image src="site-assets/images/state_machine.png" width="100%">
     </image></a>
     </p>
   </div>
+</div>
+
+    <iframe src="https://player.vimeo.com/video/146585761" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+    <p>
+     This first case is a very simple manipulation of a SmartToken. At the beginning, this one is still without contact. As soon as the user touches the token, it changes state and sends a touch event. Grasping and moving the token lead to a move event. As stopped and released, the token moves back to its initial state and indicates it with several events.
+    </p>
+
+    <iframe src="https://player.vimeo.com/video/146585762" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+    <p>
+     This first case is a very simple manipulation of a SmartToken. At the beginning, this one is still without contact. As soon as the user touches the token, it changes state and sends a touch event. Grasping and moving the token lead to a move event. As stopped and released, the token moves back to its initial state and indicates it with several events.
+    </p>
+
+<h3 id="UseCase">Use Case</h3>
+
+    <a href ="site-assets/download/photo_montage.png" target="_blank">
+      <image src="site-assets/images/photo_montage.png" width="50%"/>
+    </a>
+
+<p>
+  The notification machine consists of a set of SmartToken dispensers that communicate with a personal computer. When an event of interest is received on the computer (e.g., a new calendar event, a bug report or email), a token is released. Different dispensers represent different event types, and SmartTokens accumulate in their respective containers. SmartTokens can be picked up anytime to display event details on the computer screen or to update an event’s status. 
+
+  A SmarToken falls in the wooden container, indicating a blog comment and making a distinctive noise. Touching it makes the title of the comment appears on his screen. Picking up the token and a window pops up showing the entire comment. The SmartToken can be grabbed and sharken to mark the message as important. A red star then appears next to the message. As the token is dropped back into the dispenser, it is unassigned.
+</p>
+
+
+<h3 id="Software">Software</h3>
+<div class="grid-c">
+  <div class="example gc3">
+    <h3>List of Methods</h3> 
+    <td>More to come...</td>
+  </div>
 
   <div class="example gc3">
-    <h3>Mail Notification System Illustrated</h3> 
-    <p>To download this picture in high quality click on it.  
-      <a href ="site-assets/download/photo_montage.png" target="_blank">
-    <image src="site-assets/images/photo_montage.png" width="100%">
-    </image></a>
-    </p>
-  </div>  
-
+    <h3>List of Examples</h3> 
+      <td>More to come...</td>
+  </div>
 </div>
+
+
+<h2 id="extended">Extended Materials</h2>
+  <td>More to come...</td>
 
 
 
